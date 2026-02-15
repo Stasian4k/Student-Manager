@@ -48,12 +48,7 @@ public class StudentManager {
     }
 
     public void removeEssay(int id) {
-        for (int i = 0; i < essays.size(); i++) {
-            if (essays.get(i).getId() == id) {
-                essays.remove(i);
-                break;
-            }
-        }
+        essays.removeIf(essay -> essay.getId() == id);
     }
 
     public Essay findEssayById(int id) {
@@ -76,6 +71,6 @@ public class StudentManager {
     }
 
     public List<Essay> getAllEssays() {
-        return essays;
+        return new ArrayList<>(essays);
     }
 }
