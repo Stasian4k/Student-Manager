@@ -5,6 +5,7 @@ import java.util.List;
 
 public class StudentManager {
     private List<Student> students = new ArrayList<>();
+    private List<Essay> essays = new ArrayList<>();
 
     public void addStudent(Student student){
         students.add(student);
@@ -40,5 +41,36 @@ public class StudentManager {
 
     public List<Student> getAllStudents(){
         return students;
+    }
+
+    public void addEssay(Essay essay) {
+        essays.add(essay);
+    }
+
+    public void removeEssay(int id) {
+        essays.removeIf(essay -> essay.getId() == id);
+    }
+
+    public Essay findEssayById(int id) {
+        for (Essay essay : essays) {
+            if (essay.getId() == id) {
+                return essay;
+            }
+        }
+        return null;
+    }
+
+    public List<Essay> findEssaysByStudentId(int studentId) {
+        List<Essay> result = new ArrayList<>();
+        for (Essay essay : essays) {
+            if (essay.getStudentId() == studentId) {
+                result.add(essay);
+            }
+        }
+        return result;
+    }
+
+    public List<Essay> getAllEssays() {
+        return new ArrayList<>(essays);
     }
 }
